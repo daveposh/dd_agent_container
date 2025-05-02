@@ -1,0 +1,12 @@
+api_key: ${DD_API_KEY}
+site: ${DD_SITE}
+
+logs_enabled: true
+
+# Enable container collection
+container_collect_all: true
+
+# Log collection settings
+logs_config:
+  container_collect_all: true
+  container_exclude: "name:datadog-agent" 

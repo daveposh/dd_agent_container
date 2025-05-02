@@ -1,0 +1,9 @@
+logs:
+  - type: file
+    path: /var/log/syslog/syslog.log
+    service: syslog
+    source: syslog
+    sourcecategory: syslog
+    tags:
+      - env:production
+      - service:syslog 
