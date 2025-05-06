@@ -31,15 +31,30 @@ Before building the container, you need to:
    ENV DD_SITE=datadoghq.com
    ```
 
-## Building the Container
+## Building and Running
 
-```bash
-docker build -t datadog-agent .
-```
+### Using Docker Compose (Recommended)
 
-## Running the Container
+1. Create a `.env` file with your Datadog API key:
+   ```bash
+   echo "DD_API_KEY=your_api_key_here" > .env
+   ```
 
-### Basic Setup
+2. Start the container:
+   ```bash
+   docker-compose up -d
+   ```
+
+The `docker-compose.yml` file includes:
+- All necessary volume mounts
+- Environment variables configuration
+- Port mappings for DogStatsD and APM
+- Health checks
+- Automatic restart policy
+
+### Using Docker Directly
+
+#### Basic Setup
 ```bash
 docker run -d \
   --name datadog-agent \
@@ -51,7 +66,7 @@ docker run -d \
   datadog-agent
 ```
 
-### With External Syslog File
+#### With External Syslog File
 To monitor an external syslog file, you'll need to:
 
 1. Create a directory for your syslog file on the host:
@@ -83,6 +98,7 @@ The container will automatically monitor the syslog file at `/var/log/syslog/sys
 
 - `datadog.yaml`: Main Datadog agent configuration
 - `conf.d/syslog.d/conf.yaml`: Syslog collection configuration
+- `docker-compose.yml`: Docker Compose configuration with all necessary settings
 
 ## Ports
 
