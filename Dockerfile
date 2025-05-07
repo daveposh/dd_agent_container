@@ -1,9 +1,5 @@
-FROM datadog/agent:latest
-
-# Install necessary packages
-RUN apt-get update && apt-get install -y \
-    python3-pip \
-    && rm -rf /var/lib/apt/lists/*
+ARG BASE_IMAGE=docker.io/datadog/agent:latest
+FROM ${BASE_IMAGE}
 
 # Create directory for syslog file
 RUN mkdir -p /var/log/syslog

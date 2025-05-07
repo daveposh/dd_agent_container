@@ -2,11 +2,13 @@ version: '3.8'
 
 services:
   datadog-agent:
-    image: datadog-agent
+    image: docker.io/datadog/agent:latest
     container_name: datadog-agent
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - BASE_IMAGE=docker.io/datadog/agent:latest
     environment:
       - DD_API_KEY=${DD_API_KEY}
       - DD_SITE=datadoghq.com
